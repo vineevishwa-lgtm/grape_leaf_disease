@@ -12,8 +12,12 @@ GDRIVE_ID = "1qqmmBmnHZRYjvOZYKOvIUWHzkrJ2kL8o"
 
 if not os.path.exists(MODEL_PATH):
     print("Downloading model...")
-    url = f"https://drive.google.com/uc?id={GDRIVE_ID}"
-    gdown.download(url, MODEL_PATH, quiet=False, fuzzy=True)
+    gdown.download(
+        f"https://drive.google.com/uc?export=download&confirm=t&id={GDRIVE_ID}",
+        MODEL_PATH,
+        quiet=False
+    )
+    print("Download complete!")
 
 model = load_model(MODEL_PATH)
 classes = ["Early", "Healthy", "Moderate", "Severe"]

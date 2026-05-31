@@ -11,11 +11,11 @@ MODEL_PATH = "grape_model.h5"
 GDRIVE_ID = "1qqmmBmnHZRYjvOZYKOvIUWHzkrJ2kL8o"
 
 if not os.path.exists(MODEL_PATH):
-    print("Downloading model from Google Drive...")
-    gdown.download(f"https://drive.google.com/uc?id={GDRIVE_ID}", MODEL_PATH, quiet=False)
+    print("Downloading model...")
+    url = f"https://drive.google.com/uc?id={GDRIVE_ID}"
+    gdown.download(url, MODEL_PATH, quiet=False, fuzzy=True)
 
 model = load_model(MODEL_PATH)
-
 classes = ["Early", "Healthy", "Moderate", "Severe"]
 
 @app.route('/')
@@ -33,11 +33,7 @@ def predict():
     class_index = np.argmax(prediction)
     confidence = np.max(prediction) * 100
     result = classes[class_index]
-    return render_template(
-        "index.html",
-        prediction=result,
-        confidence=round(confidence, 2)
-    )
+    return render_template("index.html", prediction=result, confidence=round(confidence, 2))
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))

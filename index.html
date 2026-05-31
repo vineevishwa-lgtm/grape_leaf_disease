@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>GrapeMind AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <h2>🍇 GrapeMind AI</h2>
+
+```
+<div>
+    <a href="#">Home</a>
+    <a href="#">Model</a>
+    <a href="#">Results</a>
+</div>
+```
+
+</nav>
+
+<div class="container">
+
+```
+<div class="hero">
+
+    <div class="left-panel">
+
+        <span class="tag">ML Project • CNN Classification</span>
+
+        <h1>🍇 GrapeMind AI</h1>
+
+        <p class="subtitle">
+            Intelligent Grape Leaf Disease Severity Analysis using
+            Convolutional Neural Networks.
+        </p>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                <h3>CNN</h3>
+                <p>Image Classification</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>97.11%</h3>
+                <p>Training Accuracy</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>1769</h3>
+                <p>Dataset Images</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    
+    <div class="right-panel">
+
+    <h2>🍇 Analyze Grape Leaf</h2>
+
+    <p class="sample-text">
+        Upload a grape leaf image to detect disease severity.
+    </p>
+
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+
+        <input type="file" name="image" required>
+
+        <br><br>
+
+        <button type="submit">
+            Analyze Leaf
+        </button>
+
+    </form>
+
+</div>
+
+</div>
+
+{% if prediction %}
+
+<div class="result-section">
+
+    <h2>Prediction Result</h2>
+
+    <h1>{{ prediction }}</h1>
+
+    <p>Confidence: {{ confidence }}%</p>
+
+    <div class="progress">
+        <div class="progress-bar" style="width: {{ confidence }}%;">
+            {{ confidence }}%
+        </div>
+    </div>
+
+</div>
+
+{% endif %}
+
+<div class="about-section">
+    <h2>About Project</h2>
+
+    <p>
+        This project uses a Convolutional Neural Network (CNN)
+        to classify grape leaf disease severity into four classes:
+        Healthy, Early, Moderate and Severe.
+    </p>
+</div>
+```
+
+</div>
+
+</body>
+</html>
